@@ -9,24 +9,51 @@ const DropdownWithCheckbox = () => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
   return (
-    <View style={styles.pickerView}>
-      <View style={styles.checkBox}>
-        <CheckBox
-          disabled={false}
-          value={toggleCheckBox}
-          onValueChange={newValue => setToggleCheckBox(newValue)}
-          tintColors={toggleCheckBox ? 'red' : 'grey'}
-        />
-      </View>
+    <>
+      {toggleCheckBox === true ? (
+        <View style={styles.pickerView}>
+          <View style={styles.checkBox}>
+            <CheckBox
+              disabled={false}
+              value={toggleCheckBox}
+              onValueChange={newValue => setToggleCheckBox(newValue)}
+              tintColors={toggleCheckBox ? 'red' : 'grey'}
+            />
+          </View>
 
-      <View style={styles.pickerText}>
-        <Picker
-          selectedValue={subjectItem}
-          onValueChange={(itemValue, itemIndex) => setsubjectItem(itemValue)}>
-          <Picker.Item label="Separation of Substances" value="Science" />
-        </Picker>
-      </View>
-    </View>
+          <View style={styles.pickerText}>
+            <Picker
+              selectedValue={subjectItem}
+              onValueChange={(itemValue, itemIndex) =>
+                setsubjectItem(itemValue)
+              }>
+              <Picker.Item label="Separation of Substances" value="Science" />
+            </Picker>
+          </View>
+        </View>
+      ) : (
+        <View style={styles.pickerView}>
+          <View style={styles.checkBox}>
+            <CheckBox
+              disabled={false}
+              value={toggleCheckBox}
+              onValueChange={newValue => setToggleCheckBox(newValue)}
+            />
+          </View>
+
+          <View style={styles.pickerGradeOut}>
+            <Picker
+              selectedValue={subjectItem}
+              onValueChange={(itemValue, itemIndex) =>
+                setsubjectItem(itemValue)
+              }
+              style={styles.pickerTextGradeOut}>
+              <Picker.Item label="Separation of Substances" value="Science" />
+            </Picker>
+          </View>
+        </View>
+      )}
+    </>
   );
 };
 
@@ -42,12 +69,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  checkBox: {},
+  checkBox: {
+    color: '#E2E2E2',
+  },
   pickerText: {
     color: 'black',
     // color: '#787A8D',
     width: '80%',
     // flex: 6,
+  },
+  pickerGradeOut: {
+    color: '#E2E2E2',
+    // color: '#787A8D',
+    width: '80%',
+  },
+
+  pickerTextGradeOut: {
+    color: '#787A8D',
   },
 });
 export default DropdownWithCheckbox;
