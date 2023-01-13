@@ -1,58 +1,49 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox';
 import {color} from '../../utils';
+import CustomButton from '../CustomButton';
+import {useNavigation} from '@react-navigation/native';
 
 const DropdownWithCheckbox = () => {
-  const [subjectItem, setsubjectItem] = useState();
+  const [subjectItem, setsubjectItem] = useState(false);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+
+  const navigation = useNavigation();
 
   return (
     <>
-      {toggleCheckBox === true ? (
-        <View style={styles.pickerView}>
-          <View style={styles.checkBox}>
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBox}
-              onValueChange={newValue => setToggleCheckBox(newValue)}
-              tintColors={toggleCheckBox ? 'red' : 'grey'}
-            />
-          </View>
-
-          <View style={styles.pickerText}>
-            <Picker
-              selectedValue={subjectItem}
-              onValueChange={(itemValue, itemIndex) =>
-                setsubjectItem(itemValue)
-              }>
-              <Picker.Item label="Separation of Substances" value="Science" />
-            </Picker>
-          </View>
+      <View style={styles.pickerView}>
+        <View style={styles.checkBox}>
+          <CheckBox
+            disabled={false}
+            value={toggleCheckBox}
+            onValueChange={() => setToggleCheckBox(!toggleCheckBox)}
+          />
         </View>
-      ) : (
-        <View style={styles.pickerView}>
-          <View style={styles.checkBox}>
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBox}
-              onValueChange={newValue => setToggleCheckBox(newValue)}
-            />
-          </View>
-
-          <View style={styles.pickerGradeOut}>
-            <Picker
-              selectedValue={subjectItem}
-              onValueChange={(itemValue, itemIndex) =>
-                setsubjectItem(itemValue)
-              }
-              style={styles.pickerTextGradeOut}>
-              <Picker.Item label="Separation of Substances" value="Science" />
-            </Picker>
-          </View>
+        <View style={styles.pickerText}>
+          <Picker
+            selectedValue={subjectItem}
+            onValueChange={(itemValue, itemIndex) => setsubjectItem(itemValue)}>
+            <Picker.Item label="Separation of Substances" value="Science" />
+          </Picker>
         </View>
-      )}
+
+        <TouchableOpacity
+          disabled={!toggleCheckBox}
+          onPress={() => alert('click here')}
+          style={{backgroundColor: toggleCheckBox ? color.primary : 'grey'}}>
+          <Text style={{color: 'black'}}> Click Me</Text>
+        </TouchableOpacity>
+
+        <CustomButton
+          title={'Navigate to Scroll Horizontal'}
+          disabled={!toggleCheckBox}
+          onPress={() => navigation.navigate('ScrollHorizontalScreen')}
+          style={{backgroundColor: toggleCheckBox ? color.primary : 'grey'}}
+        />
+      </View>
     </>
   );
 };
@@ -64,7 +55,7 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     marginHorizontal: 20,
     borderColor: '#E2E2E2',
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -86,6 +77,16 @@ const styles = StyleSheet.create({
 
   pickerTextGradeOut: {
     color: '#787A8D',
+  },
+
+  textStyle: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    lineHeight: 16,
+    textAlign: 'center',
+    color: '#000',
+    justifyContent: 'center',
+    backgroundColor: 'grey',
   },
 });
 export default DropdownWithCheckbox;

@@ -14,12 +14,10 @@ const HomeScreen = () => {
         <NavigateBack title="Create Test" />
         <CustomDropdown />
         <View style={styles.buttonPosition}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('SelectChaptersTopics');
-            }}>
-            <CustomButton title="Next" />
-          </TouchableOpacity>
+          <CustomButton
+            title="Next"
+            onPress={() => navigation.navigate('SelectChaptersTopics')}
+          />
         </View>
       </View>
     </SafeAreaView>
