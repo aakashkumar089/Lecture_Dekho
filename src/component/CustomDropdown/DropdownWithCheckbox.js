@@ -41,7 +41,15 @@ const DropdownWithCheckbox = () => {
           title={'Navigate to Scroll Horizontal'}
           disabled={!toggleCheckBox}
           onPress={() => navigation.navigate('ScrollHorizontalScreen')}
-          style={{backgroundColor: toggleCheckBox ? color.primary : 'grey'}}
+          style={{
+            backgroundColor: toggleCheckBox ? color.primary : 'grey',
+            fontFamily: 'Poppins',
+            fontSize: 16,
+            lineHeight: 16,
+            textAlign: 'center',
+            color: '#000',
+            justifyContent: 'center',
+          }}
         />
       </View>
     </>

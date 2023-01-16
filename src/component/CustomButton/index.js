@@ -15,19 +15,18 @@ const CustomButton = ({title, onPress, disabled, toggleCheckBox, style}) => {
     <View style={styles.container}>
       {toggleCheckBox === false ? (
         <TouchableOpacity disabled={disabled} onPress={onPress}>
-          <Text style={styles.buttonText}>{title}</Text>
-          {/* <LinearGradient colors={'gray'} style={styles.buttonArea}>
-            <Text style={styles.buttonText}>{title}</Text>
-          </LinearGradient> */}
+          {/* <Text style={styles.buttonText}>{title}</Text> */}
+
+          <Text style={style}>{title}</Text>
         </TouchableOpacity>
       ) : (
         <TouchableOpacity disabled={disabled} onPress={onPress}>
-          <Text style={style}>{title}</Text>
-          {/* <LinearGradient
+          {/* <Text style={style}>{title}</Text> */}
+          <LinearGradient
             colors={[color.primary, color.secondary]}
             style={styles.buttonArea2}>
-            <Text style={styles.buttonText}>{title}</Text>
-          </LinearGradient> */}
+            <Text>{title}</Text>
+          </LinearGradient>
         </TouchableOpacity>
       )}
     </View>
@@ -70,15 +69,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
 
-  buttonText: {
-    fontFamily: 'Poppins',
-    fontSize: 16,
-    lineHeight: 16,
-    textAlign: 'center',
-    color: '#000',
-    justifyContent: 'center',
-    backgroundColor: 'orange',
-  },
+  // buttonText: {
+  //   fontFamily: 'Poppins',
+  //   fontSize: 16,
+  //   lineHeight: 16,
+  //   textAlign: 'center',
+  //   color: '#000',
+  //   justifyContent: 'center',
+  //   backgroundColor: 'orange',
+  // },
 
   buttonText1: {
     fontFamily: 'Poppins',

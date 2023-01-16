@@ -12,6 +12,7 @@ const NavigateBack = ({title}) => {
           alignItems: 'center',
           justifyContent: 'space-between',
           width: '90%',
+          marginVertical: 10,
         }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image
